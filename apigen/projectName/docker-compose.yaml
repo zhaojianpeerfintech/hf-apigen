@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  apiserver:
+    container_name: apiserver
+    image: ${DOCKERIMAGE}
+    volumes:
+      - ./client_sdk.yaml:/opt/bin/client_sdk.yaml
+      - ./crypto-config:/opt/crypto-config
+    working_dir: /opt/bin/
+    command: ./apiserver start
+    ports:
+      - 5555:5555
+    extra_hosts:
+      - "peer0.org1.hsbank.com: 115.159.146.83"
+      - "orderer1.Orderer1Org.hsbank.com: 115.159.146.83"
+
